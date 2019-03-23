@@ -8,6 +8,7 @@ import {
   Settings,
   Edit,
   ChatDetail,
+  TabView,
 } from '../views';
 
 export const ROUTES = {
@@ -32,7 +33,9 @@ export const ROUTES = {
   ChatDetail: {
     component: () => ChatDetail,
   },
-	
+  TabView: {
+    component: () => TabView,
+  },
 };
 
 Object.keys(ROUTES).forEach((routeName) => {

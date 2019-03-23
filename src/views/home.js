@@ -3,14 +3,15 @@ import {
   StyleSheet,
   View,
   Text,
+  Platform,
 } from 'react-native';
 import Deck from '../components/deck';
 import TinderCard from '../components/tinder_card';
 import NoMoreCard from '../components/no_more_card';
 
 const DATA = [
-  { id: 1, text: 'Card #1', url: 'https://www.randomlists.com/img/people/john_f_kennedy.jpg', name: 'Özgür', age: '25', school: 'Bahçeşehir Üniversitesi' },
-  { id: 2, text: 'Card #2', url: 'https://pbs.twimg.com/profile_images/681369932207013888/CHESpTzF.jpg', name: 'Ceyhun', age: '25', school: 'Bahçeşehir Üniversitesi' },
+  { id: 2, text: 'Card #1', url: 'https://pbs.twimg.com/profile_images/710880096735858689/fqR1sCg__400x400.jpg', name: 'Pebiantara', age: '25', school: 'Institute Of Bandung' },
+  { id: 1, text: 'Card #2', url: 'https://pbs.twimg.com/profile_images/681369932207013888/CHESpTzF.jpg', name: 'NurdyMuny', age: '25', school: 'Bahçeşehir Üniversitesi' },
   { id: 3, text: 'Card #3', url: 'https://c1.staticflickr.com/6/5252/5403292396_0804de9bcf_b.jpg', name: 'Özge', age: '29', school: 'Kocaeli Üniversitesi' },
   { id: 4, text: 'Card #4', url: 'https://pbs.twimg.com/media/BduTxWnIUAAKT_5.jpg', name: 'Özlem', age: '33', school: 'Yıldız Teknik Üniversitesi' },
   { id: 5, text: 'Card #5', url: 'https://c1.staticflickr.com/8/7175/6698567177_fc5df89f18_b.jpg', name: 'Eren', age: '31', school: 'Bahçeşehir Üniversitesi' },
@@ -42,16 +43,26 @@ export default class Home extends Component {
       <NoMoreCard />
     )
   }
+  
+  pushToScreen(screenName) {
+    if(Platform.OS === 'ios') {
+      this.props.navigator.push({screen: screenName})
+    } else {
+      this.props.navigator.showModal({screen: screenName ,animationType: 'slide-up'})
+    }
+  }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text onPress={() => this.pushToScreen('App')}>Launch Screen</Text>
         <Deck
           data={DATA}
           renderCard={this.renderCard}
           onSwipeLeft={(item) => console.log('left', item)}
           onSwipeRight={(item) => console.log('right', item)}
           renderNoMoreCards={() => this.renderEmptyState()}
+          navGator={this.props.navigator}
           isStack
         />
       </View>

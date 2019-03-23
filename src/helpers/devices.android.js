@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 
 const device = Dimensions.get('window');
 let scale;
+let screenWidth;
 
 if (device.width <= 414) {
 	// Android smartphones
@@ -16,4 +17,5 @@ module.exports = {
 	size: function size(pixel) {
 		return Math.ceil(pixel * scale);
 	},
+	screenWidth,
 };

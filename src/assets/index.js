@@ -15,3 +15,6 @@ export const Edit = require('./edit.png');
 export const MapIcon = require('./map.png');
 export const Key = require('./key.png');
 export const Back = require('./left-arrow.png');
+export const NotifyPeople = require('./notify_people.png');
+
+export const FbIcon = require('./fb_icon.png');
